@@ -1,0 +1,62 @@
+\section{Diagrammes de Séquences Système}
+\subsection{Se Connecter}
+Connexion à l'application, génération de la page de menu avec les tableaux de liste des jeux et liste de joueurs.
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=0.4]{images/DSS_connexion.pdf}
+	\caption{DSS Connexion}
+\end{figure}
+\newpage
+
+\subsection{Créer Partie}
+Une fois que l'administrateur demande de créer un jeu, l'accueil lui
+demande des paramètres pour le plateau. Après les paramètres sont reçus, l'accueil les passe au jeu.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=0.4]{images/DSS_creer.pdf}
+	\caption{DSS Créer un Jeu}
+\end{figure}
+\newpage
+
+\subsection{Rejoindre Partie}
+Lors du lancement de l'application, le joueur renseigne un login et est dirigé vers l'accueil. Le contrôleur s'occupe de récupérer les différents jeux créés et en attente de joueurs.
+Le joueur a alors la possibilité de rejoindre un jeu. parmis ceux proposés.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=0.3]{images/DSS_rejoindreJeu.pdf}
+	\caption{DSS Rejoindre un Jeu}
+\end{figure}
+\newpage
+
+\subsection{Lancer Partie}
+Le contrôleur s'occupe de récupérer les paramètres du jeu et vérifie la condition pour commencer un jeu.
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=0.3]{images/DSS_lancer.pdf}
+	\caption{DSS Lancer un Jeu}
+\end{figure}
+\newpage
+
+\subsection{Jouer}
+Une fois un jeu est lancé, le contrôleur s'occupe du déplacement des joueurs et la mis en place des bombes. Les changements de position des joueurs et les états des bombes sont enregistrés sur le plateau. Un indicateur de temps est mis en place pour chaque bombe. Quand il y a une explosion, le contrôleur va vérifier s'il y a des joueurs qui sont dans le même colonne ou la même ligne avec la bombe explosée. Quand un joueur est blessé à cause d'une explosion, son point de vie sera vérifié par le contrôleur avant continuer à jouer.
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=0.20]{images/DSS_jouer.pdf}
+	\caption{DSS Rejoindre un Jeu}
+\end{figure}
+\newpage
+
+\subsection{Terminer Partie}
+
+Le contrôleur s'occupe de récupérer les paramètres du jeu (le nombre 
+de joueur restant ainsi que le temps restant) et vérifie la condition 
+de la fin du jeu.
+\begin{figure}[h!]
+	\centering 
+	\includegraphics[scale=0.4]{images/DSS_terminer.pdf}
+	\caption{DSS Terminer un Jeu}
+\end{figure}
+\newpage
+	

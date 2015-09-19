@@ -1,0 +1,119 @@
+\documentclass[13pt,titlepage,a4paper]{report}
+% Tableau
+\usepackage{array}
+
+% Texte
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{lmodern}
+\usepackage{url}
+\usepackage{xcolor}
+\usepackage{color,soul}
+
+% Algo
+\usepackage{algorithm} 
+\usepackage {algorithmic} 
+
+
+% Bibliographique
+\usepackage{cite}
+\bibliographystyle{plain-fr}
+
+% Numéroter les chapitres a partir de chaque début de partie
+\makeatletter\@addtoreset{chapter}{part}\makeatother
+
+% Mise en page
+\usepackage{url}
+\usepackage[top=2.1cm,bottom=2cm,left=1cm,right=1cm]{geometry}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=false,
+    pdfborder={0 0 0},
+}
+\usepackage{multirow}
+
+% TOC
+\usepackage[french]{minitoc}
+\setcounter{tocdepth}{0}
+\setcounter{minitocdepth}{2}
+\setlength{\mtcindent}{0pt}
+
+% Images
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{graphicx}
+\usepackage{url}
+
+% Pour inclure des pages PDF
+\usepackage[final]{pdfpages}	
+
+
+% Couverture
+\usepackage{templateINSA}
+\initINSA
+
+\title{Rapport de Projet InfoRep}
+\renewcommand\soustitre{Flavien Hardy, Junzhe Hao, Mickael Navel, Yi Yu, Zenan Xu}
+\renewcommand\infoBig{ASI4.2 INSA de Rouen}
+\renewcommand\infoSmall{Responsable: Alexandre Pauchet}
+
+% Mathématique
+\usepackage{amsmath}
+
+% Code Matlab
+\usepackage{listings}
+\lstset{language=Matlab}
+\lstset{breaklines}
+\lstset{extendedchars=false}
+
+% 
+\usepackage{CJKulem}
+\usepackage{ulem}
+
+\begin{document}
+\titleINSA{15}{images/bombe.png}{20}{0}{100}{}{}
+\tableofcontents
+
+\definecolor{gray}{rgb}{0.9,0.9,0.9}
+\sethlcolor{gray}
+
+
+\paragraph{}\paragraph{}
+\paragraph{}
+
+%####################################################################################################
+
+\chapter{Spécification}
+\input{src/specification.tex}
+%
+%
+%######################################################################################################
+\chapter{Conception}
+%Conception mise à jour(changements en rouge par exemple),
+\input{src/conception.tex}
+%
+% %######################################################################################################
+\chapter{Choix techniques}
+%
+\input{src/choix.tex}
+%
+%#####################################################################################################
+\chapter{Problèmes rencontrés et solutions apportées}
+\input{src/problemeEtSolution}
+%
+%
+%
+% #####################################################################################################
+\chapter{Améliorations possibles}
+%
+%
+%
+%######################################################################################################
+\chapter{Répartition des tâches}
+\input{src/repartitionDesTaches}
+%
+%
+%
+% 
+\end{document}

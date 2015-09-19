@@ -1,0 +1,50 @@
+\section{Spécifications Externes}
+%\subsection{Besoins fonctionnels}
+%\subsubsection{Inscription}
+%Un utilisateur pourra s'inscrire grâce à un login et un mot de passe.
+%\subsubsection{Connexion}
+%Un utilisateur pourra se connecter à l'application via un login et un mot de passe.
+%\subsubsection{Choix mode de jeu}
+%Un utilisateur pourra créer un jeu avec plusieurs paramètres :
+%\begin{itemize}
+%	\item Nombre de joueurs humains ;
+%	\item Nombre d'IA .
+%\end{itemize}
+%Dans le cas de la création d'un match avec plusieurs joueurs humains, une invitation leur sera envoyée.
+%
+%\subsubsection{Le jeu}
+%\subsection{Contraintes fonctionnelles}
+%
+%Le nombre de joueurs est 8.
+\subsection{Spécifications fonctionnelles}
+\subsubsection{Fonctionnalité 1 : Gestion des utilisateurs}
+Il y aura deux types d'utilisateurs dans un jeu : joueur \textbf{Admin} et joueur \textbf{Simple}. 
+\subsubsection{Fonctionnalité 2 : Gestion du jeu}
+Il y aura deux phases de jeu : \textbf{en attente} et \textbf{en cours}. Un jeu \textbf{en attente} est un jeu créé mais pas encore commencé. Un jeu \textbf{en cours} est un jeu déjà lancé par son joueur \textbf{Admin}. 
+\subsubsection{Fonctionnalité  3 : Créer un nouveau jeu}
+L'utilisateur sera capable de créer un nouveau jeu en cliquant sur le bouton \textbf{Créer un nouveau jeu} sur l'interface de lancement de partie. L'utilisateur qui crée le jeu est un joueur \textbf{Admin}. Un joueur textbf{Admin} aura la possibilité de choisir les paramètres du jeu. Une fois que le jeu est créé, il est en phase \textbf{en attente}.
+\subsubsection{Fonctionnalité  4 : S'inscrire dans un jeu existant}
+L'utilisateur ne sera capable de s'inscrire que dans un jeu en phase \textbf{en attente}. Un utilisateur qui s'inscrit dans un jeu existant est un joueur \textbf{Simple}.
+\subsubsection{Fonctionnalité 5 : Lancer un jeu}
+Un joueur sera capable de lancer un jeu si et seulement s'il est un joueur \textbf{Admin} et qu'il y a au moins un joueur simple dans ce jeu. Une fois que le jeu est lancé, les autres ne peuvent plus s'inscrire dans le jeu.
+
+\subsubsection{Fonctionnalité 6 : Afficher la page de jeu}
+Une fois que le joueur \textbf{Admin} a lancé un jeu, la page de jeu sera affichée, elle contiendra les joueurs du jeu représentés par des avatars. La position d'un joueur au début du jeu est aléatoire. 
+
+\subsubsection{Fonctionnalité 7 : Gestion d'une partie}
+L'utilisateur sera capable de contrôler une IA par les touches directionnelles. La touche \textbf{Espace} sera utilisée pour déposer une bombe sur le plateau. Un joueur ne peut que déposer 10 bombes par jeu.
+
+\subsubsection{Fonctionnalité 8 : Gestion d'une bombe}
+Une fois qu'une bombe est déposée, un indicateur de temps est lancé pour que la bombe explose après 4 secondes. Les joueurs qui sont dans la même colonne ou la même ligne seront morts. Un joueur mort ne sera plus affiché sur le plateau et une interface \textbf{Choisir/Créer un jeu} est affiché automatiquement.
+\subsubsection{Fonctionnalité 9 : La fin d'un jeu}
+Le jeu se termine automatiquement s'il reste au plus un joueur dans la partie ou que tous les joueurs n'ont plus de bombe. Une interface \textbf{Winner} sera affichée automatiquement pour chaque joueur qui reste dans la partie et puis chaque joueur sera redirigé vers l'interface \textbf{Choisir/Créer un jeu} après 3 secondes.
+\subsubsection{Fonctionnalité 10 : Gestion des interfaces}
+Il aura trois interfaces : l'interface \textbf{Choisir/Créer un jeu}, l'interface \textbf{Jouer} et l'interface \textbf{Winner}.
+\begin{enumerate}
+	\item L'interface \textbf{Choisir/Créer un jeu} contient une liste des jeux existants (en attente/ en cours ) et une bouton \textbf{Créer un nouveau jeu} ;
+	\item L'interface \textbf{Jouer} contient le plateau de jeu ;
+	\item L'interface \textbf{Winner} ne contient qu'une félicitation textuelle, et une redirection automatique vers l'interface \textbf{Choisir/Créer un jeu};
+\end{enumerate}
+
+\subsection{Contraintes fonctionnelles}
+Le nombre de joueurs dans un jeu est de 2 à 4. Un jeu ne peut être lancé que s'il y a au moins un joueur \textbf{Simple} d'inscrit dans la partie.

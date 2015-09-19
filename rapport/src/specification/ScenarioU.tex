@@ -1,0 +1,23 @@
+\section{Scénario d'utilisation : Jouer une partie}
+
+\begin{description}
+ \item [Acteur Principal : ] L'utilisateur Admin
+ \item [Objectifs : ] L'utilisateur doit être en mesure de pouvoir contrôler un personnage.
+ \item [Préconditions : ] L'utilisateur a créé une partie, et celle-ci a été lancé. Il y a au moins 1 joueur Simple dans cette partie.
+ \item [Scénario nominal : ] 
+ \begin{enumerate}
+   \item Dès le lancement de la partie, l'utilisateur peut effectuer les actions de base ;
+   \item En fonction de l'action effectuée, le système se met à jour ;
+   \item Le système renvoi alors les informations aux différents clients ;
+   \item Tous les clients mettent à jour l'IHM ;
+   \item Les clients clients peuvent alors effectuer leur action en fonction des nouvelles informations ;
+   \item Les actions possibles sont : lâcher une bombe et se déplacer (haut, bas, droite ou gauche) ;
+   \item Dans le cas ou l'utilisateur meurt, l'information est envoyée au système et les autres joueurs en sont avertis (ce joueur n'est plus visible sur l'IHM des autres clients) ;
+   \item La partie se termine lorsqu'il ne reste plus qu'un joueur, ou que tous les joueurs ont épuisé leur stock de bombes ;
+   \item Dans le cas du joueur victorieux, une image \textbf{Winner} sera affichée ;
+   \item Les joueurs sont tous redirigés vers le menu principal de lancement de partie.
+ \end{enumerate}
+
+\end{description}
+
+

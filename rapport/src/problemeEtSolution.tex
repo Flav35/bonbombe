@@ -1,0 +1,9 @@
+Au niveau de la conception, nous avons utilisé le motif MVC pour bien
+modéliser les fonctionnalités de l'application. Le problème que nous
+avons rencontré s'est résidé dans le contrôleur. En fait nous avons
+les clients ainsi que les modules de jeu à gérer, ce qui n'est pas
+facile de manipuler dans un contrôleur alors donc nous avons 
+considéré deux contôleurs afin d'isoler la logique métier des 
+clients et jeux : un contrôleur côté client qui permet de se conncecter, se déconnecter, créer des pages différentes etc; un 
+contrôleur côté serveur qui permet de gérer les fonctionnalités du jeu, par exemple trouver les joueurs blessés, ajouter des bombes. Le 
+contrôleur côté client peut accéder au contrôleur côté serveur en utilisant la méthode \textit{getServerController}.

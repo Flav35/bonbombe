@@ -1,0 +1,51 @@
+%%definition du document%%
+
+\documentclass[a4paper,12pt]{scrartcl}
+
+\usepackage[francais]{babel}
+\usepackage[utf8]{inputenc}
+%\usepackage[T1]{fontenc}
+\usepackage{fancyhdr}
+\usepackage{lastpage} 
+\usepackage{graphicx}
+%% la premiere page %%
+
+\title{Dossier de Spécifications \\  BonBombe\\ Système de Tournoi}
+\author{Junzhe Hao\\ Yi Yu\\ Zenan Xu\\ Flavien Hardy\\ Mickaël Navel\\ \\ ASI 4}
+\date{\today}
+
+%%la mise en page %% 
+
+\pagestyle{fancy}
+
+\fancyfoot[L]{Informatique Répartie}
+\fancyfoot[R]{\thepage{}/ \pageref{LastPage}}
+\fancyfoot[C]{BonBombe}
+\fancyhead[L]{Junzhe Hao\\ Yi Yu}
+\fancyhead[C]{Zenan Xu\\ Flavien Hardy}
+\fancyhead[R]{Navel Mickaël \\ ASI.4}
+
+%% corps du document %%
+\begin{document}
+
+\maketitle{}
+\thispagestyle{empty}
+\newpage{}
+\hspace{-2cm}
+\tableofcontents{}
+
+
+ %% permet de définir le commencement de la numérotation
+ \setcounter{page}{1}
+ \hspace{-2cm}
+\include{sources/Intro}
+\include{sources/SpeEx}
+\include{sources/SpeIn} 
+\include{sources/DCU} 
+\include{sources/ScenarioU} 
+\include{sources/Maquette}
+\include{sources/DN} 
+%\include{Conclusion}
+
+
+\end{document}

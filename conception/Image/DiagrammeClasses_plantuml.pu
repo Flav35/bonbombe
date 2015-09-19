@@ -1,0 +1,317 @@
+@startuml
+
+/' Pour importer le skin styleyyyy '/
+!include ../../ressources/plantuml_skin.txt
+
+
+/' Package models '/
+package models <<Frame>> {
+
+	
+	/' Interfaces des models '/
+	package models.interf <<Frame>> {
+		hide fields
+
+		interface Plateau<extends Remote, Serializable>{
+			+ void decrementerTpsBombe()
+			+ void ajouterJoueur(Joueur joueur)
+			+ void ajoutUnBombe(int positionX, int positionY)
+			+ void supprimerJoueur(Joueur joueur)
+		}
+		interface Bombe<extends Remote, Serializable>{
+			+ void decrementerTimer()
+		}
+		interface Jeu<extends Remote, Serializable>{
+			+ void ajouterJoueur(Joueur joueur)
+			+ void supprimerJoueur(Joueur joueur)
+		}
+		interface Joueur<extends Remote, Serializable>{
+			+ void deposerBombe()
+			+ void decrementerPtVie()
+			+ void deplacer(Direction direction)
+			+ void monter()
+			+ void descendre()
+			+ void gauche()
+			+ void droite()
+		}
+		interface Admin<extends Remote, Serializable>{
+		}
+	}
+
+	/' Implementations des models '/
+	package models.Implements <<Frame>> {
+
+		class PlateauImpl{
+			- HashMap<String, Joueur> listeJoueurs
+			- ArrayList<Bombe> listeBombes
+			- int tailleX
+			- int tailleY
+		}
+		class JeuImpl{
+			- String nom
+			- Statut statut
+			- HashMap<String, Joueur> listeJoueurs
+			- int nbJoueurs
+			- int nbJoueursMax
+			- String taillePlateau
+			- Admin administrateur
+		}
+		class JoueurImpl{
+			- String login
+			- Statut statut
+			- Etat etat
+			- int pv
+			- int nbBombes
+			- int posX
+			- int posY
+			- Plateau plateau
+		}
+		class BombeImpl{
+			- int timer
+			- int positionX
+			- int positionY
+		}
+		class AdminImpl{
+
+		}
+
+	}
+
+
+	/' Definition des relations entre les Models '/
+	Plateau <|.. PlateauImpl
+	Jeu <|.. JeuImpl
+	Joueur <|.. JoueurImpl
+	Bombe <|.. BombeImpl
+	Admin <|.. AdminImpl
+
+	JoueurImpl <|-- AdminImpl
+	JeuImpl -- PlateauImpl : contient >
+	PlateauImpl "1" -- "0...*" BombeImpl : contient >
+	PlateauImpl "1" -- "2...*" JoueurImpl : contient >
+
+}
+
+
+/' Package controllers '/
+package controllers <<Frame>> {
+	
+
+	/' Implementations des controllers '/
+	package controllers.impl <<Frame>> {
+		class ClientController{
+			- String ip
+			- int port
+			- ServerController serverController
+			- Joueur joueur
+			- String nomJeu
+			- Registry registry
+			- String taillePlateau
+			- JFrame fenetre
+			- NomPage currentPage
+			
+			+ void connexion(String login)
+			+ void deconnexion()
+			+ void creerJeu(String _nom, String _nbJoueursMax, String _taille)
+			+ void supprimerJeu()
+			+ void rejoindreJeu(String _nomJeu)
+			+ void lancerJeu(String _nomJeu)
+			+ void quitterJeu()
+			+ void rejouer()
+			+ void creerPage(NomPage page)
+			- void creerPageWelcome()
+			- void creerPageMenu()
+			- void creerPageCreerJeu()
+			- void creerPageJeu()
+			+ void toString()
+		}
+		class ServerControllerImpl{
+			- HashMap<String, Joueur> listeJoueurs
+			- HashMap<String, Jeu> listeJeux
+			- HashMap<String, Bombe> listeBombes
+			- Registry registry
+			- int port
+			- int timer
+		}
+	}
+
+	/' Interfaces des controllers '/
+	package controllers.interf <<Frame>> {
+		hide fields
+		interface ServerController<extends Remote>{
+			+ void ajouterJoueur(String login)
+			+ void ajouterBombe(int x, int y)
+			+ HashMap<String, Joueur> trouverBlesse(int posX, int posY)
+			+ void supprimerJoueur(String login)
+			+ void supprimerBombe(int x, int y)
+			+ void creerJeu(String nom, int nbJoueurMax, String taille, String login)
+			+ void supprimerJeu(String login)
+			+ void rejoindreJeu(String login, String nomJeu)
+			+ void quitterJeu(String login, String nomJeu)
+		}
+	}
+
+	ServerController <|.. ServerControllerImpl
+
+}
+
+
+/' Package des Vues '/
+package views <<Frame>> {
+	abstract Page<extends JPanel>{
+		- ClientController controller
+		- JPanel principalPane
+		- JPanel titlePane
+		- JPanel lbIcone1
+		- JPanel lbIcone2
+		- JPanel lbTitre
+		- Color couleurFond
+		- LineBorder principalBorder
+	}
+	class WelcomePage{
+		- JPanel middlePane
+		- JLabel lbLogin
+		- JLabel lbErreur
+		- JTextField tfLogin
+		- JButton bConnexion
+		--
+		- void connexion(String login)
+	}
+	class MenuPage{
+		- JTable tJeux
+		- DefaultTableModel tMJeux
+		- JTable tJoueurs
+		- DefaultTableModel tMJoueurs
+		- JPanel middlePane
+		- JPanel tJeuxPane
+		- JPanel tJoueursPane
+		- JLabel lbLogin
+		- JLabel lbTJoueurs
+		- JLabel lbTJeux
+		- JLabel lbErreur
+		- JButton bCreerJeu
+		- JButton bConnexion
+		- javax.swing.Timer timerListes
+		--
+		- void initTableauJoueurs()
+		- void refreshTableauJoueurs()
+		- void initTableauJeux()
+		- void refreshTableauJeux()
+		- void rejoindre(String _nomJeu)
+		- void lancer(String _nomJeu)
+		- void creerJeu()
+		- void lancerJeu(String _nomJeu)
+		- void deconnexion()
+		- void startTimer()
+
+	}
+	class CreerJeuPage{
+		- JPanel middlePane
+		- JPanel tJeuxPane
+		- JPanel tJoueursPane
+		- JLabel lbLogin
+		- JLabel lbNom
+		- JLabel lbNbJoueursMax
+		- JLabel lbTaille
+		- JLabel lbErreurNb
+		- JLabel lbErreurNom
+		- JTextField tNom
+		- JTextField tNbJoueursMax
+		- JButton bRetour
+		- JButton bDeconnexion
+		- JButton bValider
+		- JComboBox cbTaille
+		--
+		- void retour()
+		- void deconnexion()
+		- void valider()
+	}
+	class JeuPage{
+		- ClientController controller
+		- Plateau plateau
+		- JTable tJoueurs
+		- DefaultTableModel tMJoueurs
+		- JPanel infoPane
+		- JPanel jeuPane
+		- JPanel middlePane
+		- JPanel lbPanneau
+		- JLabel lbLogin
+		- JLabel lbTempsRestant
+		- JLabel lbListeJoueurs
+		- JButton bQuitter
+		- JButton bRejouer
+		- javax.swing.Timer timerListes
+		- HashMap<String, Carre> map
+		- int taillePlateau
+		--
+		- void initPanneauJeu()
+		- void initInfosJoueurs()
+		- void updateInfosJoueurs()
+		- void quitter()
+		- void rejouer()
+		- void startTimer()
+		- void refresh()
+		- void drawJoueur()
+		- void drawBombe()
+		- void drawExplosion()
+	}
+
+
+	/' Definition des relations entre les vues '/
+	Page <|-- WelcomePage
+	Page <|-- MenuPage
+	Page <|-- CreerJeuPage
+	Page <|-- JeuPage
+}
+
+
+/' Enumerations utilisees '/
+package enums <<Frame>> {
+	enum Direction{
+		MONTER
+		DESCENDRE
+		GAUCHE
+		DROITE
+	}
+	enum Etat{
+		VIVANT
+		MORT
+	}
+	enum Statut{
+		ENJEU
+		PASENJEU
+		ENCOURS
+		OUVERT
+		PLEIN
+	}
+	enum NomPage{
+		WELCOME
+		MENU
+		JEU
+		CREERJEU
+	}
+}
+
+
+
+/' Exceptions '/
+package exceptions <<Frame>> {
+	hide members
+	hide <<Exception>> circle
+	class BombeExistantException <<Exception>>
+	class JeuInexistantException <<Exception>>
+	class JeuPleinException <<Exception>>
+	class JoueurInexistantException <<Exception>>
+	class LoginExistantException <<Exception>>
+	class LoginVideException <<Exception>>
+	class MoveException <<Exception>>
+	class NomJeuExistantException <<Exception>>
+	class TimerException <<Exception>>
+}
+
+
+
+/' On declare en dehors de tout package les relations qui sortent des package (sinon ça fout le bordel dans le diagramme) '/
+ClientController -- Page : cree >
+
+@enduml

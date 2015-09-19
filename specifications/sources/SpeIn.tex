@@ -1,0 +1,48 @@
+\section{Spécifications Internes }
+
+\subsection{Choix techniques}
+
+    \subsubsection{Langage de programmation}
+
+Le java sera utilisé pour le développement. Nous utiliseront la technologie RMI pour l'interaction client-serveur.
+
+    \subsubsection{IA}
+
+Une IA simple sera mise en oeuvre. L'IA pourra exécuter des actions simples comme :
+\begin{itemize}
+	\item Déposer une bombe ;
+	\item Se déplacer.
+\end{itemize}
+Ces actions seront effectuées de façon aléatoires.
+
+    \subsubsection{IHM}
+
+Une IHM simple sera mise en oeuvre.\\
+
+Pour l'affichage du plateau de jeu, nous utiliserons des terrains prédéfinis en fonction du nombre de joueurs (plateau de jeu pour 2 joueurs moins volumineux que pour 4 joueurs).
+
+   \subsubsection{Client/Serveur}
+
+Le client aura pour rôle de :
+\begin{itemize}
+	\item Récupérer les actions du joueur et les envoyer au serveur ;
+	\item D'afficher les mises à jours récupérées depuis le serveur.
+\end{itemize}
+
+Le serveur aura pour rôle de :
+\begin{itemize}
+	\item Récupérer les informations des clients ;
+	\item Mettre à jour la partie en fonction des informations reçues ;
+	\item Renvoyer aux clients les nouvelles informations concernant la partie.
+\end{itemize}
+
+\subsection{Choix  graphiques}
+
+Les informations suivantes seront affichées à l'écran durant une partie :
+\begin{itemize}
+  \item Le plateau de jeu ;
+  \item Pseudonyme des joueurs et des IA ;
+  \item Le nombre de bombes restantes ;
+  \item Indicateur de temps avant explosion de la bombe.
+\end{itemize}
+
