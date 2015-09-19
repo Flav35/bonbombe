@@ -11,7 +11,7 @@ CLASSPATH=lib:$(CLASSESPATH)
 DOTCLASS=$$(find classes Server Client rmiregistry -iname *.class)
 
 
-all : compile compileClient compileServer cpNommage
+all : clean compile compileClient compileServer cpNommage
 
 compile :
 	javac -sourcepath $(SOURCEPATH) -d $(CLASSESPATH) -cp ./lib/ $(JAVA)
